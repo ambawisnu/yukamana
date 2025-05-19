@@ -719,6 +719,7 @@ section,
   background-color: rgba(0, 0, 0, 0.5); /* hitam transparan 50% */
   padding: 40px;
   border-radius: 12px;
+<<<<<<< HEAD
 }
 
  /*about me*/
@@ -753,3 +754,6 @@ p, li, a, span {
   background: #a0a0a0; /* biru tua saat hover */
   color: #fff;
 }
+=======
+}
+>>>>>>> d3ac2ef (Update semua perubahan)
