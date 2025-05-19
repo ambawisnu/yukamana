@@ -1,0 +1,23 @@
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.sidebar {
+  min-height: 100vh;
+  background-color: #008000;
+}
+
+.sidebar a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 1rem;
+}
+
+.sidebar a:hover {
+  background-color: #000000;
+}
+
+.navbar {
+  background-color: #f8f9fa;
+}
