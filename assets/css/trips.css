@@ -1,0 +1,42 @@
+/* assets/css/trips.css */
+
+/* Trips Cards Styling */
+#trips .card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#trips .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+}
+
+#trips .card-img-top {
+  height: 220px;
+  object-fit: cover;
+}
+
+#trips .card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+#trips .card-body p {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+#trips .text-danger {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  #trips .card-img-top {
+    height: 180px;
+  }
+}
