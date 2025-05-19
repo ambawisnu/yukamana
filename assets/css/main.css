@@ -720,3 +720,36 @@ section,
   padding: 40px;
   border-radius: 12px;
 }
+
+ /*about me*/
+body {
+  font-family: 'Poppins', 'Roboto', 'Raleway', sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+}
+p, li, a, span {
+  font-family: 'Poppins', sans-serif;
+}
+
+.btn-get-started {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 12px 30px;
+  border-radius: 30px;
+  transition: 0.3s;
+  color: #fff;
+  background: #000000; /* warna biru */
+  text-decoration: none;
+}
+
+.btn-get-started:hover {
+  background: #a0a0a0; /* biru tua saat hover */
+  color: #fff;
+}
