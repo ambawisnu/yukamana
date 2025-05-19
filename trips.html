@@ -11,7 +11,7 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Poppins&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -22,6 +22,8 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+  <!-- Trips Page CSS -->
+  <link href="assets/css/trips.css" rel="stylesheet">
 </head>
 
 <body class="trips-page">
@@ -30,8 +32,6 @@
     <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 class="sitename">Yukamana</h1>
       </a>
 
@@ -48,7 +48,7 @@
       <div class="header-social-links">
         <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
         <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="https://youtu.be/3il0t1UIlPY?si=gVpRcaFIblxb-TBJ" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
       </div>
 
     </div>
@@ -56,35 +56,78 @@
 
   <main class="main">
 
-    <!-- Placeholder content for Trips page -->
-    <section id="trips" class="section">
-      <div class="container text-center">
-        <h2>Trips</h2>
-        <p>Welcome to the Trips page. Content coming soon.</p>
+    <section id="trips" class="section py-5">
+      <div class="container">
+        <h2 class="text-center mb-4">Gunung Pilihan</h2>
+        <div class="row g-4">
+
+          <!-- Card Gunung Kerinci -->
+          <div class="col-md-4">
+            <div class="card h-100">
+              <img src="assets/img/gunung_kerinci.jpg" class="card-img-top" alt="Gunung Kerinci">
+              <div class="card-body">
+                <span class="badge bg-success">Open</span>
+                <h5 class="card-title mt-2">Gunung Kerinci</h5>
+                <p class="mb-1">3.805 MDPL</p>
+                <p class="mb-1"><i class="bi bi-star-fill text-warning"></i> 4.9</p>
+                <p class="text-danger fw-bold">IDR 1.000.000</p>
+                <p class="mb-0 text-muted">Puncak · Danau Gunung Tujuh</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Gunung Semeru -->
+          <div class="col-md-4">
+            <div class="card h-100">
+              <img src="assets/img/gunung_semeru.jpg" class="card-img-top" alt="Gunung Semeru">
+              <div class="card-body">
+                <span class="badge bg-success">Open</span>
+                <h5 class="card-title mt-2">Gunung Semeru</h5>
+                <p class="mb-1">3.676 MDPL</p>
+                <p class="mb-1"><i class="bi bi-star-fill text-warning"></i> 4.9</p>
+                <p class="text-danger fw-bold">IDR 2.000.000</p>
+                <p class="mb-0 text-muted">Puncak · Ranu Kumbolo</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Gunung Rinjani -->
+          <div class="col-md-4">
+            <div class="card h-100">
+              <img src="assets/img/gunung_rinjani.jpg" class="card-img-top" alt="Gunung Rinjani">
+              <div class="card-body">
+                <span class="badge bg-success">Open</span>
+                <h5 class="card-title mt-2">Gunung Rinjani</h5>
+                <p class="mb-1">3.726 MDPL</p>
+                <p class="mb-1"><i class="bi bi-star-fill text-warning"></i> 4.9</p>
+                <p class="text-danger fw-bold">IDR 3.500.000</p>
+                <p class="mb-0 text-muted">Puncak · Air Terjun Sendang Gile</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
 
   </main>
 
   <footer id="footer" class="footer light-background">
-
-    <div class="container">
-      <div class="copyright text-center ">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">Yukamana</strong> <span>All Rights Reserved<br></span></p>
-      </div>
+    <div class="container text-center">
+      <p>© <strong class="sitename">Yukamana</strong> All Rights Reserved</p>
       <div class="social-links d-flex justify-content-center">
-        <a href=""><i class="bi bi-twitter-x"></i></a>
-        <a href=""><i class="bi bi-facebook"></i></a>
-        <a href=""><i class="bi bi-instagram"></i></a>
-        <a href=""><i class="bi bi-linkedin"></i></a>
-      </div>
+        <a href="#"><i class="bi bi-twitter-x"></i></a>
+        <a href="#"><i class="bi bi-facebook"></i></a>
+        <a href="#"><i class="bi bi-instagram"></i></a>
+        <a href="#"><i class="bi bi-linkedin"></i></a>
       </div>
     </div>
-
   </footer>
 
   <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
 
   <!-- Preloader -->
   <div id="preloader"></div>
@@ -104,5 +147,4 @@
   <script src="assets/js/main.js"></script>
 
 </body>
-
 </html>
