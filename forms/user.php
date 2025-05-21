@@ -14,7 +14,7 @@ if (!$result) {
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Yukamana Admin - Users</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
@@ -132,22 +132,19 @@ if (!$result) {
 
       const result = await response.text();
 
-      if (response.ok && result.trim() === "success") {
-        // Tambah baris baru ke tabel user
+      if (response.ok && !isNaN(result.trim())) {
+        const newUserId = result.trim();
         const tableBody = document.querySelector("#userTable tbody");
-        const rowCount = tableBody.rows.length + 1;
-        const badgeClass = status === "active" ? "success" : "secondary";
 
         const newRow = `
-          <tr data-id="${rowCount}">
-            <td>${rowCount}</td>
+          <tr data-id="${newUserId}">
+            <td>${newUserId}</td>
             <td>${name}</td>
             <td>${email}</td>
             <td>${registered_at}</td>
-            <td><span class="badge bg-${badgeClass}">${status.charAt(0).toUpperCase() + status.slice(1)}</span></td>
+            <td><span class="badge bg-success">${status.charAt(0).toUpperCase() + status.slice(1)}</span></td>
             <td>
-              <button class="btn btn-sm btn-warning" disabled><i class="bi bi-pencil"></i></button>
-              <button class="btn btn-sm btn-danger delete-user" data-id="${rowCount}"><i class="bi bi-trash"></i></button>
+              <button class="btn btn-sm btn-danger delete-user" data-id="${newUserId}"><i class="bi bi-trash"></i></button>
             </td>
           </tr>
         `;

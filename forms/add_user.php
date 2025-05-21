@@ -18,13 +18,15 @@ if (empty($name) || empty($email)) {
     exit;
 }
 
-$sql = "INSERT INTO users (name, email, status, registered_at) VALUES ('$name', '$email', '$status', '$registered_at')";
+// Jika password wajib di db, buat default password hash (ubah sesuai kebutuhan)
+$password = password_hash('default123', PASSWORD_DEFAULT);
+
+$sql = "INSERT INTO users (name, email, status, registered_at, password) VALUES ('$name', '$email', '$status', '$registered_at', '$password')";
 
 if (mysqli_query($conn, $sql)) {
-    http_response_code(200);
-    echo "success";
+    // Kirim balik ID user yang baru dibuat
+    echo mysqli_insert_id($conn);
 } else {
     http_response_code(500);
     echo "Database error: " . mysqli_error($conn);
 }
-?>
