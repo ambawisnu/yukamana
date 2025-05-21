@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+i<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -15,7 +15,7 @@
     <!-- Sidebar -->
     <div class="sidebar p-3">
       <h4 class="text-white">Yukamana Admin</h4>
-      <a href="/admin/admin.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
+      <a href="/forms/admin.php"><i class="bi bi-speedometer2"></i> Dashboard</a>
       <a href="/admin/users.html"><i class="bi bi-people"></i> Users</a>
       <a href="/admin/tripsadmin.html"><i class="bi bi-map"></i> Trips</a>
       <a href="/admin/feedback.html"><i class="bi bi-chat-left-dots"></i> Feedback</a>
@@ -34,10 +34,33 @@
         </div>
       </nav>
 
-      <div class="container mt-4">
-        <div class="d-flex justify-content-between mb-3">
+      <div class="mb -3">
+        <div class="d-flex justify-content-between align-items-center mb-2">
           <h4>List of Registered Users</h4>
-          <button class="btn btn-primary"><i class="bi bi-plus-circle"></i> Add User</button>
+          <button class="btn btn-primary" onclick="toggleAddUserForm()">
+            <i class="bi bi-plus-circle"></i> Add User
+          </button>
+            
+      <div id="addUserForm" style="display: none;" class="card p-3 shadow-sm mb-4">
+        <form id="addUserFormElement" class="row g-3">
+          <div class="col-md-4">
+            <input type="text" name="name" class="form-control" placeholder="Nama" required>
+          </div> 
+          <div class="col-md-4">
+            <input type="email" name="email" class="form-control" placeholder="Email" required>
+          </div>
+          <div class="col-md-3">
+            <select name="status" class="form-select" required>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+          </div>
+          <div class="col-md-1">
+            <button type="submit" class="btn btn-success w-100">Tambah</button>
+          </div>
+        </form>
+      </div>
+
         </div>
 
         <div class="table-responsive">
@@ -53,28 +76,6 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Dewi Permata</td>
-                <td>dewi@example.com</td>
-                <td>2025-05-18</td>
-                <td><span class="badge bg-success">Active</span></td>
-                <td>
-                  <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
-                  <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Andi Pratama</td>
-                <td>andi@example.com</td>
-                <td>2025-05-17</td>
-                <td><span class="badge bg-secondary">Inactive</span></td>
-                <td>
-                  <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
-                  <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
-                </td>
-              </tr>
               <!-- Tambahkan lebih banyak user di sini -->
             </tbody>
           </table>
@@ -84,6 +85,88 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function toggleAddUserForm() {
+      const form = document.getElementById('addUserForm');
+      if (form.style.display === 'none' || form.style.display === '') {
+        form.style.display = 'block';
+      } else {
+        form.style.display = 'none';
+      } }
+
+    document.getElementById("addUserFormElement").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const name = this.name.value;
+    const email = this.email.value;
+    const status = this.status.value;
+    const joinedAt = new Date().toISOString().slice(0, 10);
+
+    // Kirim data PHP
+    const response = await fetch("/forms/add_user.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&status=${status}&joined_at=${joinedAt}`
+    });
+
+    const result = await response.text();
+
+    // Tambahkan data ke tabel
+    if (response.ok) {
+      const tableBody = document.querySelector("table tbody");
+      const rowCount = tableBody.rows.length + 1;
+      const badgeClass = status === "active" ? "success" : "secondary";
+
+      const newRow = `
+        <tr>
+          <td>${rowCount}</td>
+          <td>${name}</td>
+          <td>${email}</td>
+          <td>${joinedAt}</td>
+          <td><span class="badge bg-${badgeClass}">${status.charAt(0).toUpperCase() + status.slice(1)}</span></td>
+          <td>
+            <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
+            <button class="btn btn-sm btn-danger delete-user" data-id="${email}"><i class="bi bi-trash"></i></button>
+          </td>
+        </tr>
+      `;
+      tableBody.insertAdjacentHTML("beforeend", newRow);
+      this.reset();
+    } else {
+      alert("Gagal menambahkan user.");
+    }
+  });
+</script>
+  </script>
+  <script>
+  document.addEventListener('click', async function (e) {
+    if (e.target.closest('.delete-user')) {
+      const button = e.target.closest('.delete-user');
+      const userId = button.getAttribute('data-id');
+
+      if (confirm("Yakin mau hapus user ini?")) {
+        const response = await fetch("/forms/hapus_user.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: `id=${encodeURIComponent(userId)}`
+        });
+
+        const result = await response.text();
+
+        if (result.trim() === "success") {
+          const row = button.closest('tr');
+          row.remove();
+        } else {
+          alert("Gagal menghapus user.");
+        }
+      }
+    }
+  });
+</script>
 </body>
 
 </html>

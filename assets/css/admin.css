@@ -21,3 +21,8 @@ body {
 .navbar {
   background-color: #f8f9fa;
 }
+
+#addUserForm {
+  margin-top: 1rem;
+}
+

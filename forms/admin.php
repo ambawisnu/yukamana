@@ -1,6 +1,13 @@
 <?php
 include '../forms/db.php'; 
 $result = mysqli_query($conn, "SELECT * FROM trips");
+
+$userCountQuery = "SELECT COUNT(*) as total FROM users";
+$userCountResult = mysqli_query($conn, $userCountQuery);
+$userCount = mysqli_fetch_assoc($userCountResult)['total'];
+
+$recentUsersQuery = "SELECT name, email, registered_at FROM users ORDER BY registered_at DESC LIMIT 3";
+$recentUsersResult = mysqli_query($conn, $recentUsersQuery);
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +54,7 @@ $result = mysqli_query($conn, "SELECT * FROM trips");
             <div class="card shadow-sm">
               <div class="card-body">
                 <h5 class="card-title">Total Users</h5>
-                <p class="card-text display-6">120</p>
+                <p class="card-text display-6"><?= $userCount ?></p>
               </div>
             </div>
           </div>
@@ -86,32 +93,27 @@ $result = mysqli_query($conn, "SELECT * FROM trips");
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Dewi</td>
-                      <td>dewi@example.com</td>
-                      <td>2025-05-18</td>
+                    <?php 
+                    $no = 1;
+                    while ($row = mysqli_fetch_assoc($result)) {
+                    ?>
+
+                      <tr>
+                        <td><?= $no++ ?></td>
+                        <td><?= $row['name'] ?></td>
+                        <td><?= $row['email'] ?></td>
+                        <td><?= $row['registered_at'] ?></td>
                     </tr>
-                    <tr>
-                      <td>Andi</td>
-                      <td>andi@example.com</td>
-                      <td>2025-05-17</td>
-                    </tr>
-                    <tr>
-                      <td>Satria</td>
-                      <td>satria@example.com</td>
-                      <td>2025-05-16</td>
-                    </tr>
-                  </tbody>
+                    <?php } ?>
+                    </tbody>
                 </table>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
