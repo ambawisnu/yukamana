@@ -6,7 +6,7 @@ $userCountQuery = "SELECT COUNT(*) as total FROM users";
 $userCountResult = mysqli_query($conn, $userCountQuery);
 $userCount = mysqli_fetch_assoc($userCountResult)['total'];
 
-$recentUsersQuery = "SELECT name, email, registered_at FROM users ORDER BY registered_at DESC LIMIT 3";
+$recentUsersQuery = "SELECT name, email, registered_at FROM users ORDER BY registered_at DESC LIMIT 1000";
 $recentUsersResult = mysqli_query($conn, $recentUsersQuery);
 ?>
 
@@ -28,7 +28,7 @@ $recentUsersResult = mysqli_query($conn, $recentUsersQuery);
     <div class="sidebar p-3">
       <h4 class="text-white">Yukamana Admin</h4>
       <a href="/forms/admin.php"><i class="bi bi-speedometer2"></i> Dashboard</a>
-      <a href="/admin/users.html"><i class="bi bi-people"></i> Users</a>
+      <a href="/forms/user.php"><i class="bi bi-people"></i> Users</a>
       <a href="/admin/tripsadmin.html"><i class="bi bi-map"></i> Trips</a>
       <a href="/admin/feedback.html"><i class="bi bi-chat-left-dots"></i> Feedback</a>
       <a href="/login.html"><i class="bi bi-box-arrow-right"></i> Logout</a>
@@ -94,12 +94,9 @@ $recentUsersResult = mysqli_query($conn, $recentUsersQuery);
                   </thead>
                   <tbody>
                     <?php 
-                    $no = 1;
-                    while ($row = mysqli_fetch_assoc($result)) {
+                    while ($row = mysqli_fetch_assoc($recentUsersResult)) {
                     ?>
-
                       <tr>
-                        <td><?= $no++ ?></td>
                         <td><?= $row['name'] ?></td>
                         <td><?= $row['email'] ?></td>
                         <td><?= $row['registered_at'] ?></td>
