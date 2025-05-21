@@ -11,6 +11,7 @@ $name = mysqli_real_escape_string($conn, $_POST['name'] ?? '');
 $email = mysqli_real_escape_string($conn, $_POST['email'] ?? '');
 $status = mysqli_real_escape_string($conn, $_POST['status'] ?? 'active');
 $registered_at = mysqli_real_escape_string($conn, $_POST['registered_at'] ?? date('Y-m-d'));
+$password_raw = $_POST['password']?? 'default123';
 
 if (empty($name) || empty($email)) {
     http_response_code(400);
@@ -19,7 +20,7 @@ if (empty($name) || empty($email)) {
 }
 
 // Jika password wajib di db, buat default password hash (ubah sesuai kebutuhan)
-$password = password_hash('default123', PASSWORD_DEFAULT);
+$password = password_hash($password_raw, PASSWORD_DEFAULT);
 
 $sql = "INSERT INTO users (name, email, status, registered_at, password) VALUES ('$name', '$email', '$status', '$registered_at', '$password')";
 

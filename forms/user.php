@@ -56,11 +56,14 @@ if (!$result) {
         <!-- Form Tambah User -->
         <div id="addUserForm" style="display: none;" class="card p-3 shadow-sm mb-4">
           <form id="addUserFormElement" class="row g-3">
-            <div class="col-md-4">
+            <div class="col-md-3">
               <input type="text" name="name" class="form-control" placeholder="Nama" required />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
               <input type="email" name="email" class="form-control" placeholder="Email" required />
+            </div>
+            <div class="col-md-3">
+              <input type="password" name="password" class="form-control" placeholder="Password" required />
             </div>
             <div class="col-md-2">
               <button type="submit" class="btn btn-success w-100">Tambah</button>
@@ -73,7 +76,6 @@ if (!$result) {
           <table class="table table-striped align-middle" id="userTable">
             <thead class="table-light">
               <tr>
-                <th>id</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Registered at</th>
@@ -84,7 +86,6 @@ if (!$result) {
             <tbody>
               <?php while ($row = mysqli_fetch_assoc($result)) : ?>
                 <tr data-id="<?= htmlspecialchars($row['id']) ?>">
-                  <td><?= htmlspecialchars($row['id']) ?></td>
                   <td><?= htmlspecialchars($row['name']) ?></td>
                   <td><?= htmlspecialchars($row['email']) ?></td>
                   <td><?= htmlspecialchars($row['registered_at']) ?></td>
@@ -120,6 +121,7 @@ if (!$result) {
       const email = this.email.value.trim();
       const status = 'active';
       const registered_at = new Date().toISOString().slice(0, 10);
+      const password = this.password.value.trim();
 
       // Kirim data ke backend
       const response = await fetch("/forms/add_user.php", {
@@ -127,7 +129,7 @@ if (!$result) {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&status=${status}&registered_at=${registered_at}`
+        body: `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&status=${status}&registered_at=${registered_at}=&password=${encodeURIComponent(password)}`
       });
 
       const result = await response.text();
@@ -138,7 +140,6 @@ if (!$result) {
 
         const newRow = `
           <tr data-id="${newUserId}">
-            <td>${newUserId}</td>
             <td>${name}</td>
             <td>${email}</td>
             <td>${registered_at}</td>
