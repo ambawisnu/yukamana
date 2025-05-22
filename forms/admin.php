@@ -29,7 +29,7 @@ $recentUsersResult = mysqli_query($conn, $recentUsersQuery);
       <h4 class="text-white">Yukamana Admin</h4>
       <a href="/forms/admin.php"><i class="bi bi-speedometer2"></i> Dashboard</a>
       <a href="/forms/user.php"><i class="bi bi-people"></i> Users</a>
-      <a href="/admin/tripsadmin.html"><i class="bi bi-map"></i> Trips</a>
+      <a href="/forms/tripsadmin.php"><i class="bi bi-map"></i> Trips</a>
       <a href="/admin/feedback.html"><i class="bi bi-chat-left-dots"></i> Feedback</a>
       <a href="/login.html"><i class="bi bi-box-arrow-right"></i> Logout</a>
     </div>
